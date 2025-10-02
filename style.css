@@ -1,0 +1,366 @@
+/* Modern Glassmorphism Design System */
+:root {
+    --primary-hue: 220; /* Indigo/Violet */
+    --accent-hue: 85; /* Lime Green */
+    
+    --primary: hsl(var(--primary-hue), 80%, 60%);
+    --primary-dark: hsl(var(--primary-hue), 80%, 50%);
+    --accent: hsl(var(--accent-hue), 75%, 55%);
+    --accent-dark: hsl(var(--accent-hue), 75%, 45%);
+    
+    --surface-bg: rgba(255, 255, 255, 0.1);
+    --surface-border: rgba(255, 255, 255, 0.2);
+    --surface-shadow: rgba(0, 0, 0, 0.1);
+    
+    --text-primary: #ffffff;
+    --text-secondary: rgba(230, 230, 255, 0.75);
+    
+    --shadow-sm: 0 2px 4px 0 var(--surface-shadow);
+    --shadow-md: 0 6px 10px -2px var(--surface-shadow);
+    --shadow-lg: 0 12px 20px -4px var(--surface-shadow);
+    --shadow-xl: 0 24px 35px -8px var(--surface-shadow);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* General Body Styles with Animated Gradient Blobs */
+/* Replace the existing body rule */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0b192f; /* Fallback */
+    background: linear-gradient(135deg, #0b192f 0%, #1e3a8a 50%, #1c2b4d 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: -1;
+    filter: blur(100px);
+}
+
+body::before {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    top: -10%;
+    left: -10%;
+    animation: moveBlob 15s infinite alternate;
+}
+
+body::after {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--primary-dark), #ff6b6b);
+    bottom: -15%;
+    right: -15%;
+    animation: moveBlob 20s infinite alternate-reverse;
+}
+
+@keyframes moveBlob {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(100px, 50px) rotate(90deg); }
+}
+
+
+/* Header and Navigation */
+header {
+    background: var(--surface-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--surface-border);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+}
+
+nav ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
+
+/* Main Content & Shared Section Styles */
+main {
+    padding-bottom: 80px;
+}
+
+.search-section, .offers, .flight-results, .hotel-results, .holiday-packages, .visa-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+
+/* Glass Containers (Search, Cards) */
+.search-container, .package-card, .hotel-card, .visa-card, .flight-card {
+    background: var(--surface-bg);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--surface-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    position: relative;
+}
+
+
+/* Form Elements */
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+form input {
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px hsla(var(--primary-hue), 80%, 60%, 0.3);
+}
+
+form input::placeholder {
+    color: var(--text-secondary);
+}
+
+form button {
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Grids for Cards */
+.offer-grid, .results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 2rem auto 0;
+}
+
+
+/* Card Styles */
+.package-card, .hotel-card {
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card:hover, .hotel-card:hover, .visa-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.package-card img, .hotel-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    margin: 0;
+    transition: transform 0.4s ease;
+}
+
+.package-card:hover img, .hotel-card:hover img {
+    transform: scale(1.08);
+}
+
+.package-card > div, .hotel-card > div {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card h3, .hotel-card h3, .visa-card h3 {
+    margin: 0 0 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.visa-card {
+    padding: 2rem 1.5rem;
+}
+
+.package-card p, .hotel-card p, .visa-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.flight-card {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.flight-price p {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+
+/* WhatsApp Section & Button */
+.whatsapp-contact {
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    margin: 2rem auto;
+    max-width: 1400px;
+    text-align: center;
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
+}
+
+.whatsapp-button {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #1a1a1a;
+    padding: 14px 32px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 25px hsla(var(--accent-hue), 75%, 55%, 0.5);
+}
+
+
+/* Footer */
+footer {
+    background: transparent;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--surface-border);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body::before, body::after { display: none; } /* Disable blobs on mobile for performance */
+    
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1.2rem; }
+    nav { flex-direction: column; gap: 1rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; }
+    form { grid-template-columns: 1fr; }
+    .offer-grid, .results-container { grid-template-columns: 1fr; }
+    h2 { font-size: 2rem; }
+}
